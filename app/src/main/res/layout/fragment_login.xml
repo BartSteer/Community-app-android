@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Blue Background -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#007aff"/>
+
+    <!-- First Circle (Largest) -->
+    <ImageView
+        android:layout_width="590dp"
+        android:layout_height="590dp"
+        android:layout_gravity="center"
+        android:src="@drawable/big_circle"
+        android:alpha="0.15"/>
+
+
+    <!-- Second Circle (Smaller) -->
+    <ImageView
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_gravity="center"
+        android:src="@drawable/small_circle" />
+
+    <!--  Login Form Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <!-- Title "Login" -->
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
+
+        <!-- Username Input -->
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="700px"
+            android:layout_height="130px"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/textbox"
+            android:backgroundTint="#f8f4f4"
+            android:hint="Username"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textSize="16sp" />
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="700px"
+            android:layout_height="130px"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/textbox"
+            android:backgroundTint="#f8f4f4"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textSize="16sp" />
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="700px"
+            android:layout_height="150px"
+            android:backgroundTint="#007aff"
+            android:text="Login"
+            android:textColor="@android:color/white"
+            android:textSize="40px" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -51,4 +51,23 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21")
+
+    // Jetpack Compose UI
+    implementation("androidx.compose.ui:ui:1.5.0")
+
+// Compose Material (Material2)
+    implementation("androidx.compose.material:material:1.5.0")
+
+// Compose UI Tooling
+    implementation("androidx.compose.ui:ui-tooling:1.5.0")
+
+// Material3
+    implementation("androidx.compose.material3:material3:1.1.0")
+
+// Navigation for Compose
+    implementation("androidx.navigation:navigation-compose:2.6.0")
+// Jetpack Lifecycle ViewModel for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
 }
