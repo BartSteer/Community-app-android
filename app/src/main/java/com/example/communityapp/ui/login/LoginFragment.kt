@@ -1,4 +1,4 @@
-/*package com.example.communityapp.ui.login
+package com.example.communityapp.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -57,4 +57,3 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 }
-*/
