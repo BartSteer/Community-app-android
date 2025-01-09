@@ -3,6 +3,8 @@ package com.example.communityapp
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // Setting up the app bar configuration for top-level destinations
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile
             )
         )
 
@@ -38,4 +40,11 @@ class MainActivity : AppCompatActivity() {
         // Navigate directly to the 'Home' fragment on Activity startup
         navController.navigate(R.id.navigation_home)
     }
+
+    @Composable
+    fun Greetings()
+    {
+        Text(text= "hello ")
+    }
+
 }
