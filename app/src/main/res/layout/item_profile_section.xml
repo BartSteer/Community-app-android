@@ -65,7 +65,4 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <!-- Other sections (Bio, Posts, etc.) can follow a similar structure -->
-
 </LinearLayout>

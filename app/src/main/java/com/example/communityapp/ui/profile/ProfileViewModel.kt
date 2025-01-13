@@ -32,6 +32,13 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
+    // Add updateUser method to allow updating user details
+    fun updateUser(updatedUser: UserModel) {
+        viewModelScope.launch {
+            _user.value = updatedUser
+        }
+    }
+
     fun showSettings() {
         // Handle showing settings screen
     }
