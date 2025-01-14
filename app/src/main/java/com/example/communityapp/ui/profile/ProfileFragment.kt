@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.communityapp.R
 import com.example.communityapp.databinding.FragmentProfileBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -19,14 +21,13 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var adapter: ProfileAdapter
 
-    private var isEditing = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         setupRecyclerView()
+        setupProfileImageClick()
         setupButtons()
         observeViewModel()
         return binding.root
@@ -42,12 +43,6 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.user.collect { user ->
                 adapter.setUser(user)
-                if (!isEditing) {
-                    // Populate editable fields for later
-                    binding.editProfileName.setText(user.name)
-                    binding.editProfileEmail.setText(user.email)
-                    binding.editProfileBio.setText(user.bio)
-                }
             }
         }
 
@@ -58,14 +53,22 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun setupProfileImageClick() {
+        // Navigate to Profile Image Edit Fragment when profile image is clicked
+        binding.profileImage.setOnClickListener {
+            findNavController().navigate(R.id.navigation_profile_image_edit)
+        }
+    }
+
     private fun setupButtons() {
-        // Edit Profile Button
+        // Toggle editable form when "Edit Profile" is clicked
         binding.editProfileButton.setOnClickListener {
             toggleEditing(true)
         }
 
-        // Save Button
+        // Save changes when "Save" is clicked
         binding.saveButton.setOnClickListener {
+            // Update user details
             val updatedUser = UserModel(
                 name = binding.editProfileName.text.toString(),
                 email = binding.editProfileEmail.text.toString(),
@@ -77,7 +80,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun toggleEditing(editing: Boolean) {
-        isEditing = editing
         binding.profileRecyclerView.visibility = if (editing) View.GONE else View.VISIBLE
         binding.editableForm.visibility = if (editing) View.VISIBLE else View.GONE
         binding.editProfileButton.visibility = if (editing) View.GONE else View.VISIBLE

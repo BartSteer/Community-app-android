@@ -28,4 +28,10 @@
         android:name="com.example.communityapp.ui.profile.ProfileFragment"
         android:label="profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_profile_image_edit"
+        android:name="com.example.communityapp.ui.profile.ProfileImageEditFragment"
+        android:label="Edit Profile Image"
+        tools:layout="@layout/fragment_profile_image_edit" />
 </navigation>
