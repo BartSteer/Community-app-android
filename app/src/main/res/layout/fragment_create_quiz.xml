@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Quiz Title Input -->
+    <EditText
+        android:id="@+id/quizTitleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quiz Title" />
+
+    <!-- Quiz Points Input -->
+    <EditText
+        android:id="@+id/quizPointsInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quiz Points"
+        android:inputType="number" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveQuizButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Quiz" />
+
+</LinearLayout>

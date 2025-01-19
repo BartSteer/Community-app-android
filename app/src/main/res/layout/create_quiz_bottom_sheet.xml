@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Quiz Title Input -->
+    <EditText
+        android:id="@+id/quizTitleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Quiz Title"
+        android:inputType="text" />
+
+    <!-- Quiz Points Input -->
+    <EditText
+        android:id="@+id/quizPointsInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Points"
+        android:inputType="number" />
+
+    <!-- Quiz Completed Checkbox -->
+    <CheckBox
+        android:id="@+id/quizCompletedCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark as Completed" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveQuizButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+</LinearLayout>

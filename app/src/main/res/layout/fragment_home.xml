@@ -12,18 +12,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/createPostFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/id_add"
-        android:contentDescription="Create Post"
+        android:contentDescription="Create Quiz"
         android:tint="@android:color/white"
         app:backgroundTint="@color/primary"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
-    app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -6,8 +6,20 @@ import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    // Inline Quiz data class
+    data class Quiz(val title: String, val points: Int, val isCompleted: Boolean)
+
+    private val _quizzes = MutableLiveData<MutableList<Quiz>>().apply {
+        value = mutableListOf(
+            Quiz("What is the best national dish Bulgaria has?", 10, false),
+            Quiz("What is banitsa?", 15, true)
+        )
     }
-    val text: LiveData<String> = _text
+
+    val quizzes: LiveData<MutableList<Quiz>> = _quizzes
+
+    fun addQuiz(quiz: Quiz) {
+        _quizzes.value?.add(quiz)
+        _quizzes.postValue(_quizzes.value)
+    }
 }
