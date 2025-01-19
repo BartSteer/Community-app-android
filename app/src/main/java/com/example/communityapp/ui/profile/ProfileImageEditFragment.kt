@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.communityapp.R
+import androidx.fragment.app.activityViewModels
 import com.example.communityapp.databinding.FragmentProfileImageEditBinding
 import java.io.InputStream
 
@@ -19,6 +19,7 @@ class ProfileImageEditFragment : Fragment() {
 
     private var _binding: FragmentProfileImageEditBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ProfileViewModel by activityViewModels()
 
     private val galleryRequestCode = 1001
     private val cameraRequestCode = 1002
@@ -28,7 +29,6 @@ class ProfileImageEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileImageEditBinding.inflate(inflater, container, false)
-
         setupButtons()
         return binding.root
     }
@@ -48,8 +48,13 @@ class ProfileImageEditFragment : Fragment() {
 
         // Save Button
         binding.saveButton.setOnClickListener {
-            // Save logic here (e.g., save to local storage or backend)
-            requireActivity().onBackPressed() // Navigate back after saving
+            viewModel.profileImageBitmap.value?.let {
+                viewModel.updateProfileImage(it)
+            }
+            viewModel.profileImageUri.value?.let {
+                viewModel.updateProfileImageUri(it)
+            }
+            requireActivity().onBackPressed() // Navigate back to ProfileFragment
         }
 
         // Cancel Button
@@ -63,16 +68,16 @@ class ProfileImageEditFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 galleryRequestCode -> {
-                    // Handle gallery image
                     val selectedImageUri: Uri? = data?.data
                     selectedImageUri?.let { uri ->
                         displayImageFromUri(uri)
+                        viewModel.updateProfileImageUri(uri.toString())
                     }
                 }
                 cameraRequestCode -> {
-                    // Handle camera image
                     val imageBitmap = data?.extras?.get("data") as Bitmap
                     binding.profileImagePreview.setImageBitmap(imageBitmap)
+                    viewModel.updateProfileImage(imageBitmap)
                 }
             }
         }
@@ -82,6 +87,7 @@ class ProfileImageEditFragment : Fragment() {
         val inputStream: InputStream? = requireContext().contentResolver.openInputStream(uri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
         binding.profileImagePreview.setImageBitmap(bitmap)
+        viewModel.updateProfileImage(bitmap)
     }
 
     override fun onDestroyView() {

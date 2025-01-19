@@ -1,5 +1,6 @@
 package com.example.communityapp.ui.profile
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,40 +42,65 @@ class ProfileFragment : Fragment() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            viewModel.user.collect { user ->
-                adapter.setUser(user)
+            viewModel.name.collect { name ->
+                binding.editProfileName.setText(name)
+                adapter.updateName(name)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.email.collect { email ->
+                binding.editProfileEmail.setText(email)
+                adapter.updateEmail(email)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.bio.collect { bio ->
+                binding.editProfileBio.setText(bio)
+                adapter.updateBio(bio)
             }
         }
 
         lifecycleScope.launch {
             viewModel.currentPoints.collect { points ->
-                adapter.setPoints(points)
+                adapter.updatePoints(points)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.profileImageUri.collect { uri ->
+                if (!uri.isNullOrEmpty()) {
+                    binding.profileImage.setImageURI(Uri.parse(uri))
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.profileImageBitmap.collect { bitmap ->
+                bitmap?.let {
+                    binding.profileImage.setImageBitmap(it)
+                }
             }
         }
     }
 
     private fun setupProfileImageClick() {
-        // Navigate to Profile Image Edit Fragment when profile image is clicked
         binding.profileImage.setOnClickListener {
             findNavController().navigate(R.id.navigation_profile_image_edit)
         }
     }
 
     private fun setupButtons() {
-        // Toggle editable form when "Edit Profile" is clicked
         binding.editProfileButton.setOnClickListener {
             toggleEditing(true)
         }
 
-        // Save changes when "Save" is clicked
         binding.saveButton.setOnClickListener {
-            // Update user details
-            val updatedUser = UserModel(
-                name = binding.editProfileName.text.toString(),
-                email = binding.editProfileEmail.text.toString(),
-                bio = binding.editProfileBio.text.toString()
-            )
-            viewModel.updateUser(updatedUser)
+            // Save updated details directly into ViewModel
+            viewModel.updateName(binding.editProfileName.text.toString())
+            viewModel.updateEmail(binding.editProfileEmail.text.toString())
+            viewModel.updateBio(binding.editProfileBio.text.toString())
             toggleEditing(false)
         }
     }

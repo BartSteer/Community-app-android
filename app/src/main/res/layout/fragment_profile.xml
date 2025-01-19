@@ -1,49 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Old Design: RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profile_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="64dp" />
+    <!-- Profile Image -->
 
-    <!-- Profile Image (Clickable) -->
+    <!-- Profile Details Section -->
+
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="top|center_horizontal"
-        android:src="@drawable/ic_profile_placeholder"
-        android:scaleType="centerCrop"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/circle_background"
-        android:clickable="true"
-        android:focusable="true" />
+        android:contentDescription="Profile Image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_profile_placeholder" />
 
-    <!-- Edit Profile Button -->
-    <Button
-        android:id="@+id/edit_profile_button"
+    <LinearLayout
+        android:id="@+id/editableForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="60dp" />
-
-    <!-- New Design: Editable Form -->
-    <LinearLayout
-        android:id="@+id/editable_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:padding="16dp">
 
         <EditText
-            android:id="@+id/edit_profile_name"
+            android:id="@+id/editProfileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
@@ -51,7 +36,7 @@
             android:padding="8dp" />
 
         <EditText
-            android:id="@+id/edit_profile_email"
+            android:id="@+id/editProfileEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -60,7 +45,7 @@
             android:padding="8dp" />
 
         <EditText
-            android:id="@+id/edit_profile_bio"
+            android:id="@+id/editProfileBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Bio"
@@ -68,13 +53,32 @@
             android:minHeight="100dp"
             android:textSize="16sp"
             android:padding="8dp" />
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:visibility="gone"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
-</FrameLayout>
+
+    <!-- Edit Profile Button -->
+
+    <!-- Save Button -->
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:visibility="gone"
+        android:layout_marginTop="16dp" />
+
+    <!-- RecyclerView for Additional Sections -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Edit Profile" />
+
+</LinearLayout>
